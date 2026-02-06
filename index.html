@@ -248,16 +248,14 @@
                 </div>
 
                 <div class="payment-actions">
-                    <button type="button" id="paystackBtn" class="btn-primary btn-block mb-3">
-                        PAY ONLINE
-                    </button>
+                    <div id="paypal-button-container" class="mb-3"></div>
                     <div class="divider">OR</div>
                     <button type="button" id="whatsappBtn" class="btn-whatsapp btn-block">
                         <i class="fa-brands fa-whatsapp"></i> ORDER VIA WHATSAPP
                     </button>
                 </div>
             </form>
-            <p class="secure-notice"><i class="fa-solid fa-lock"></i> Secured by Paystack</p>
+            <p class="secure-notice"><i class="fa-solid fa-lock"></i> Secured by PayPal</p>
         </div>
     </div>
 
@@ -265,6 +263,9 @@
     <a href="https://wa.me/233536206077" class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
     <!-- Event Registration Modal -->
     <div id="eventModal" class="modal">

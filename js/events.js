@@ -72,69 +72,32 @@ document.addEventListener('DOMContentLoaded', () => {
             registerBtn.textContent = "Registering...";
             registerBtn.disabled = true;
 
-            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            // Static / Client-Side Registration Logic
+            const whatsappMsg = `Hello, I want to register for the event: ${eventTitleDisplay.textContent.replace('Join us for: ', '')}.%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}`;
+            const whatsappUrl = `https://wa.me/233536206077?text=${whatsappMsg}`;
 
-            if (!isLocal) {
-                // Static Environment Fallback
-                // Since we can't save to DB, we simulate success or redirect to WhatsApp
-                const whatsappMsg = `Hello, I want to register for the event.%0AName: ${name}%0AEmail: ${email}`;
-                const whatsappUrl = `https://wa.me/233536206077?text=${whatsappMsg}`;
+            // Simulate slight delay for UX
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
 
-                if (confirm('Online registration requires a server. Would you like to send your details via WhatsApp instead?')) {
-                    window.open(whatsappUrl, '_blank');
-                    eventModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-
-                registerBtn.textContent = originalText;
-                registerBtn.disabled = false;
-                return;
-            }
-
-            try {
-                const response = await fetch('/api/register-event', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        eventId: id,
-                        name,
-                        email,
-                        phone
-                    })
+                // Show success state locally so they feel registered
+                eventForm.querySelector('.form-group').parentElement.childNodes.forEach(node => {
+                    if (node.classList && node.classList.contains('form-group')) {
+                        node.style.display = 'none';
+                    }
                 });
 
-                const result = await response.json();
+                registerBtn.style.display = 'none';
 
-                if (result.success) {
-                    // Show success state
-                    eventForm.querySelector('.form-group').parentElement.childNodes.forEach(node => {
-                        // Hide inputs roughly
-                        if (node.classList && node.classList.contains('form-group')) {
-                            node.style.display = 'none';
-                        }
-                    });
-
-                    // Hide the button
-                    registerBtn.style.display = 'none';
-
-                    // Show link
-                    if (result.link && meetingLink) {
-                        meetingLink.href = result.link;
-                        eventSuccessMsg.style.display = 'block';
-                    }
-
-                    // Refresh inputs visibility if re-opened? Handled in openEventModal reset
-                } else {
-                    alert('Registration failed: ' + result.error);
-                    registerBtn.textContent = originalText;
-                    registerBtn.disabled = false;
+                if (meetingLink) {
+                    meetingLink.href = "https://teams.microsoft.com/l/meetup-join/..." // Placeholder or real link if available in event object
+                    eventSuccessMsg.style.display = 'block';
+                    eventSuccessMsg.querySelector('p strong').textContent = "Redirecting to WhatsApp...";
                 }
-            } catch (err) {
-                console.error(err);
-                alert('An error occurred.');
-                registerBtn.textContent = originalText;
-                registerBtn.disabled = false;
-            }
+
+                alert('Opening WhatsApp to complete your registration...');
+
+            }, 800);
         });
     }
 
