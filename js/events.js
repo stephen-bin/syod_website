@@ -11,24 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const eventTitleDisplay = document.getElementById('event-title-display');
 
     // Register Buttons
-    // Find generic "Register" buttons or specific event buttons
-    // For now, let's attach to the "REGISTER FOR FREE" button in the events section
     document.querySelectorAll('a.btn-primary').forEach(btn => {
         if (btn.textContent.includes('REGISTER')) {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                openEventModal(1); // Hardcoded ID 1 for "Book Launch"
+                openEventModal(1);
             });
         }
     });
 
     async function openEventModal(id) {
         try {
-            // Determine source: API or Static JSON
-            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            const url = isLocal ? '/api/events' : 'data/events.json';
-
-            const response = await fetch(url);
+            // Static Fetch
+            const response = await fetch('data/events.json');
             const events = await response.json();
             const event = events.find(e => e.id == id);
 
@@ -46,7 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (e) {
             console.error(e);
-            alert('Could not load event details.');
+            // Fallback content if fetch fails
+            eventTitleDisplay.textContent = "Join us for our upcoming event.";
+            eventModal.style.display = 'block';
         }
     }
 
@@ -58,46 +55,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Submit Registration
+    // Submit Registration (Static -> WhatsApp)
     if (eventForm) {
-        eventForm.addEventListener('submit', async (e) => {
+        eventForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const name = document.getElementById('reg-name').value;
             const email = document.getElementById('reg-email').value;
-            const phone = document.getElementById('reg-phone').value;
-            const id = eventIdInput.value;
+            const title = eventTitleDisplay.textContent;
 
-            const originalText = registerBtn.textContent;
-            registerBtn.textContent = "Registering...";
-            registerBtn.disabled = true;
-
-            // Static / Client-Side Registration Logic
-            const whatsappMsg = `Hello, I want to register for the event: ${eventTitleDisplay.textContent.replace('Join us for: ', '')}.%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}`;
+            const whatsappMsg = `Hello, I want to register for *${title}*.%0A%0AName: ${name}%0AEmail: ${email}`;
             const whatsappUrl = `https://wa.me/233536206077?text=${whatsappMsg}`;
 
-            // Simulate slight delay for UX
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
 
-                // Show success state locally so they feel registered
-                eventForm.querySelector('.form-group').parentElement.childNodes.forEach(node => {
-                    if (node.classList && node.classList.contains('form-group')) {
-                        node.style.display = 'none';
-                    }
-                });
-
-                registerBtn.style.display = 'none';
-
-                if (meetingLink) {
-                    meetingLink.href = "https://teams.microsoft.com/l/meetup-join/..." // Placeholder or real link if available in event object
-                    eventSuccessMsg.style.display = 'block';
-                    eventSuccessMsg.querySelector('p strong').textContent = "Redirecting to WhatsApp...";
+            // Show Success UI regardless
+            eventForm.querySelector('.form-group').parentElement.childNodes.forEach(node => {
+                if (node.classList && node.classList.contains('form-group')) {
+                    node.style.display = 'none';
                 }
+            });
+            registerBtn.style.display = 'none';
 
-                alert('Opening WhatsApp to complete your registration...');
-
-            }, 800);
+            // Hardcoded link fallback
+            if (meetingLinkContainer) {
+                meetingLinkContainer.innerHTML = 'Your request has been sent via WhatsApp! We will add you to the group shortly.';
+            }
+            if (eventSuccessMsg) eventSuccessMsg.style.display = 'block';
         });
     }
 

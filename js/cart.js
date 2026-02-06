@@ -74,6 +74,13 @@ const Cart = {
         return this.items.reduce((sum, item) => sum + item.quantity, 0);
     },
 
+    renderCount() {
+        const countEl = document.getElementById('cart-count');
+        if (countEl) {
+            countEl.textContent = this.getCount();
+        }
+    },
+
     // UI Rendering
     renderCartModal() {
         const container = document.getElementById('cart-items-container');
