@@ -1,54 +1,49 @@
-# The Spiritual Youth on a Date - Official Website
+# The Spiritual Youth on a Date (Official Website)
 
-This repository contains the official landing page for **"The Spiritual Youth on a Date"** by Stephen Npoandan Binaansim.
+Landing page for the book *The Spiritual Youth on a Date* by Stephen Npoandan Binaansim.
 
-## Project Overview
+## Features
 
-The website is designed with the **"Modern Apostle"** strategy:
+- **Modern Landing Page**: Responsive design, animations, and "The Modern Apostle" branding.
+- **Shopping Cart**: Add books to cart, persistence via LocalStorage.
+- **WhatsApp Checkout**: Order directly via WhatsApp with a pre-filled message (fully static).
+- **Paystack Integration**:
+  - **Dynamic Backend**: Calculated totals and secure initialization (requires Node.js server).
+  - **Static Fallback**: Direct link to Paystack Payment Page (for GitHub Pages).
+- **Event Registration**: Register for events (Backend: Email + Database / Static: WhatsApp redirect).
 
-* **Vibe**: Bold, Intellectual, Urgent.
-* **Palette**: Red (`#E01919`), White, Black.
-* **Target**: Gen Z & Millennials (13-35).
+## Setup & Deployment
 
-## Directory Structure
+### 1. Static Hosting (GitHub Pages / Netlify)
 
-* `index.html`: Main landing page structure.
-* `css/`: Stylesheets (`style.css` for layout, `animations.css` for effects).
-* `js/`: Interaction logic (`app.js`).
-* `assets/`: Images (Book mockup).
-* `PROMPT.md`: The "Master Prompt" / Design Spec that generated this project.
+This is the **recommended** way to host the frontend for free.
 
-## How to Run Locally
+- **Limitations**: The "Pay Online" button will redirect to a fixed payment page, and Event Registration will redirect to WhatsApp. The backend API is not available.
+- **How to Deploy**:
+    1. Push this code to a GitHub repository.
+    2. Go to Settings -> Pages -> Select `main` branch.
 
-1. Open this folder in VS Code (or any editor).
-2. Open `index.html` in your browser (drag and drop or use Live Server).
+### 2. Full Stack (Node.js)
 
-## How to Deploy to GitHub Pages
+To enable dynamic payments, order savings, and automated emails:
 
-To make this website live on the internet for free:
+- **Install**: `npm install`
+- **Configure**: Create `.env`:
 
-1. **Create a Repository on GitHub**:
-    * Go to [github.com/new](https://github.com/new).
-    * Name it `syod-website` (or similar).
-    * Do **not** check "Initialize with README" (you already have this one).
-
-2. **Push Code**:
-    Open your terminal in this folder and run:
-
-    ```bash
-    git init
-    git add .
-    git commit -m "Initial commit - Modern Apostle Landing Page"
-    git branch -M main
-    git remote add origin https://github.com/YOUR_USERNAME/syod-website.git
-    git push -u origin main
+    ```env
+    PAYSTACK_SECRET_KEY=sk_test_...
+    EMAIL_USER=your-email@gmail.com
+    EMAIL_PASS=your-app-password
+    PORT=3000
     ```
 
-3. **Activate GitHub Pages**:
-    * Go to your repository settings on GitHub.
-    * Click **Pages** (in the left sidebar).
-    * Under **Source**, select `Deploy from a branch`.
-    * Select `main` branch and `/ (root)` folder.
-    * Click **Save**.
+- **Run**: `npm start`
+- **Deploy**: Use a service like **Render** or **Heroku** that supports Node.js.
 
-Your site will be live at `https://YOUR_USERNAME.github.io/syod-website/` in a few minutes!
+## Project Structure
+
+- `index.html`: Main entry point.
+- `css/style.css`: All styling (Vanilla CSS).
+- `js/`: Application logic (`app.js`, `cart.js`, `payment.js`, `events.js`).
+- `server.js`: Node.js backend (optional).
+- `data/`: JSON storage for orders/events (backend only).

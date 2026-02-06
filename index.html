@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Spiritual Youth on a Date | Stephen Npoandan Binaansim</title>
-    <meta name="description" content="A practical & spiritual guide to relationships for the modern young adult. Don't just date. Date with purpose.">
-    
+    <meta name="description"
+        content="A practical & spiritual guide to relationships for the modern young adult. Don't just date. Date with purpose.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
-    
+
     <!-- Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Placeholder for FA, will use SVG if needed -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Placeholder for FA, will use SVG if needed -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">STEPHEN BINAANSIM</a>
-            <a href="#order" class="btn-sm">Get the Book</a>
+            <div class="nav-right">
+                <div class="cart-icon-container" id="openCartBtn">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span id="cart-count" class="cart-count">0</span>
+                </div>
+                <button class="btn-sm open-payment-modal">Get the Book</button>
+            </div>
         </div>
     </nav>
 
@@ -36,14 +48,15 @@
                 <h1 class="hero-title">DON'T JUST DATE.<br><span class="text-red">DATE WITH PURPOSE.</span></h1>
                 <h2 class="hero-subtitle">A letter on relationships to every young adult.</h2>
                 <div class="hero-cta">
-                    <a href="#order" class="btn-primary">ORDER NOW</a>
+                    <button class="btn-primary add-to-cart-btn" data-id="book-main"
+                        data-title="The Spiritual Youth on a Date" data-price="45">ADD TO CART (GH₵ 45)</button>
                     <a href="#chapter1" class="link-secondary">Read Chapter 1 for Free</a>
                 </div>
             </div>
             <div class="hero-visual fade-in-right">
                 <div class="book-container">
-                    <!-- Using the mockup we generated -->
-                    <img src="assets/book_mockup.png" alt="The Spiritual Youth on a Date Book Cover" class="book-3d">
+                    <!-- Using the real front cover -->
+                    <img src="assets/2d94d0bf-1.png" alt="The Spiritual Youth on a Date Book Cover" class="book-3d">
                 </div>
             </div>
         </div>
@@ -53,8 +66,9 @@
     <!-- Agitation Section -->
     <section class="agitation section-padding">
         <div class="container">
-            <h2 class="section-title text-center">THE WORLD SAYS DATE FOR FUN.<br><span class="text-red">GOD SAYS DATE FOR A FUTURE.</span></h2>
-            
+            <h2 class="section-title text-center">THE WORLD SAYS DATE FOR FUN.<br><span class="text-red">GOD SAYS DATE
+                    FOR A FUTURE.</span></h2>
+
             <div class="grid-3">
                 <div class="card agitation-card" data-aos>
                     <div class="card-icon"><i class="fa-solid fa-question"></i></div>
@@ -64,12 +78,14 @@
                 <div class="card agitation-card" data-aos>
                     <div class="card-icon"><i class="fa-solid fa-scale-unbalanced"></i></div>
                     <h3>Compromise</h3>
-                    <p>Are you structuring your entire life around finding 'a partner' instead of finding God's purpose?</p>
+                    <p>Are you structuring your entire life around finding 'a partner' instead of finding God's purpose?
+                    </p>
                 </div>
                 <div class="card agitation-card" data-aos>
                     <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
                     <h3>Clarity</h3>
-                    <p>Discover the mathematical and spiritual logic behind a God-honoring relationship that lasts.</p>
+                    <p>Discover God's will and truth concerning relationships and Building a God-honoring relationship
+                        that lasts.</p>
                 </div>
             </div>
         </div>
@@ -79,18 +95,15 @@
     <section class="author section-padding bg-light">
         <div class="container author-grid">
             <div class="author-img-container" data-aos>
-                <!-- Placeholder for Author Image - Using a generic div for now or if user provided one I'd use it. 
-                     Since I don't have a specific author photo file yet, I will use a placeholder or the book mockup cropped.
-                     For now, a stylish placeholder div. -->
-                <div class="author-placeholder">
-                    <span>Stephen Npoandan Binaansim</span>
-                </div>
+                <img src="assets/cover-back.png" alt="Stephen Npoandan Binaansim" class="author-img">
             </div>
             <div class="author-content" data-aos>
                 <h2 class="section-title">MATHEMATICIAN.<br>MINISTER. <span class="text-red">MENTOR.</span></h2>
                 <p class="lead">Stephen Npoandan Binaansim isn't just a pastor.</p>
-                <p>With a background in Mathematics and AI, and currently pursuing a PhD at the University of Edinburgh, directly bridging the gap between Faith and Reason.</p>
-                <p>He brings a logical, scripture-backed approach to the chaotic world of modern dating. He treats relationships not as a game of chance, but as a formula for spiritual foundation and success.</p>
+                <p>With a background in Mathematics and AI, and currently pursuing a PhD at the University of Edinburgh,
+                    directly bridging the gap between Faith and Reason.</p>
+                <p>He brings a logical, scripture-backed approach to the chaotic world of modern dating. He treats
+                    relationships not as a game of chance, but as a formula for spiritual foundation and success.</p>
             </div>
         </div>
     </section>
@@ -103,19 +116,26 @@
                 <div class="zigzag-item" data-aos>
                     <div class="zigzag-text">
                         <h3>01. The Foundation</h3>
-                        <p>Why spiritual compatibility is mathematically more important than emotional chemistry.</p>
+                        <p>The institution of marriage and its purpose.</p>
                     </div>
                 </div>
                 <div class="zigzag-item" data-aos>
                     <div class="zigzag-text">
                         <h3>02. The Process</h3>
-                        <p>Practical, step-by-step guidance on how to conduct "The Date" with honor and intent.</p>
+                        <p>The Misconceptions About Dating, The Bible Concepts On Dating! </p>
                     </div>
                 </div>
                 <div class="zigzag-item" data-aos>
                     <div class="zigzag-text">
-                        <h3>03. The Goal</h3>
-                        <p>Building a Christ-centered family that impacts generations, not just planning a wedding day.</p>
+                        <h3>03. Dating & Friendship </h3>
+                        <p>The Misconceptions About Dating, The Bible Concepts On Dating! </p>
+                    </div>
+                </div>
+                <div class="zigzag-item" data-aos>
+                    <div class="zigzag-text">
+                        <h3>04. The Goal</h3>
+                        <p>Building a Christ-centered family that impacts generations, not just planning a wedding day.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -129,19 +149,38 @@
             <div class="video-grid">
                 <div class="video-card play-trigger">
                     <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-                    <p class="video-caption">Is it sin to kiss?</p>
+                    <p class="video-caption">What is Divine Direction in Marriages?</p>
                 </div>
                 <div class="video-card play-trigger">
                     <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-                    <p class="video-caption">Talking vs. Dating?</p>
+                    <p class="video-caption">Is Dating Biblical?</p>
                 </div>
                 <div class="video-card play-trigger">
                     <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-                    <p class="video-caption">How to break up?</p>
+                    <p class="video-caption">The Marriage Covenant</p>
                 </div>
                 <div class="video-card play-trigger">
                     <div class="play-icon"><i class="fa-solid fa-play"></i></div>
                     <p class="video-caption">The "One" Myth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">UPCOMING <span class="text-red">EVENTS</span></h2>
+            <div class="event-card" data-aos>
+                <div class="event-image">
+                    <img src="assets/promo-launch.jpg" alt="Book Launch Event">
+                </div>
+                <div class="event-details">
+                    <h3>OFFICIAL BOOK LAUNCH</h3>
+                    <p class="event-date"><i class="fa-regular fa-calendar"></i> Saturday, 14th Feb 2026</p>
+                    <p class="event-location"><i class="fa-solid fa-location-dot"></i> Online via MS Teams</p>
+                    <p>Join Stephen for the official launch of "The Spiritual Youth on a Date".</p>
+                    <a href="#" class="btn-primary">REGISTER FOR FREE</a>
                 </div>
             </div>
         </div>
@@ -152,13 +191,121 @@
         <div class="container text-center">
             <h2 class="hero-title text-white mb-4">YOUR FUTURE MARRIAGE<br>STARTS NOW.</h2>
             <div class="cta-group">
-                <button class="btn-primary btn-lg">ORDER ON AMAZON <i class="fa-brands fa-amazon"></i></button>
+                <button class="btn-primary btn-lg add-to-cart-btn" data-id="book-main"
+                    data-title="The Spiritual Youth on a Date" data-price="45">ADD TO CART (GH₵ 45)</button>
                 <button class="btn-outline btn-lg">BULK ORDER (CHURCHES)</button>
             </div>
             <p class="copyright mt-5">&copy; 2026 Stephen Npoandan Binaansim. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Cart Drawer/Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCartBtn">&times;</span>
+            <h2 class="text-red">YOUR CART</h2>
+            <div id="cart-items-container" class="cart-items">
+                <!-- Items will be injected here -->
+                <p>Your cart is empty.</p>
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">GH₵ 0.00</span>
+                </div>
+                <button id="checkoutBtn" class="btn-primary btn-block">PROCEED TO CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal (Checkout Form) -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closePaymentBtn">&times;</span>
+            <h2 class="text-red">CHECKOUT</h2>
+            <p class="mb-4">Complete your order.</p>
+
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Kwame Mensah" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="kwame@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="050 123 4567" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <input type="text" id="address" placeholder="Legon Campus, Hall X, Room 304" required>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes (Optional)</label>
+                    <input type="text" id="notes" placeholder="Call when arriving">
+                </div>
+
+                <div class="payment-actions">
+                    <button type="button" id="paystackBtn" class="btn-primary btn-block mb-3">
+                        PAY ONLINE
+                    </button>
+                    <div class="divider">OR</div>
+                    <button type="button" id="whatsappBtn" class="btn-whatsapp btn-block">
+                        <i class="fa-brands fa-whatsapp"></i> ORDER VIA WHATSAPP
+                    </button>
+                </div>
+            </form>
+            <p class="secure-notice"><i class="fa-solid fa-lock"></i> Secured by Paystack</p>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/233536206077" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Event Registration Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeEventBtn">&times;</span>
+            <h2 class="text-red">REGISTER FOR EVENT</h2>
+            <p id="event-title-display" class="mb-4">Join us for our upcoming event.</p>
+
+            <form id="eventForm">
+                <input type="hidden" id="eventId">
+                <div class="form-group">
+                    <label for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" placeholder="Kwame Mensah" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email Address</label>
+                    <input type="email" id="reg-email" placeholder="kwame@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-phone">Phone Number</label>
+                    <input type="tel" id="reg-phone" placeholder="050 123 4567" required>
+                </div>
+
+                <div id="event-success-msg" class="text-center"
+                    style="display:none; color: green; margin-bottom: 20px;">
+                    <p><strong>Registration Successful!</strong></p>
+                    <p id="meeting-link-container">
+                        Meeting Link: <a href="#" id="meeting-link" target="_blank">Join Here</a>
+                    </p>
+                    <p class="text-sm">Check your email for details.</p>
+                </div>
+
+                <button type="submit" id="registerBtn" class="btn-primary btn-block">REGISTER NOW</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/events.js"></script>
 </body>
+
 </html>

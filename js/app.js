@@ -45,4 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Initialize Cart
+    if (window.Cart) {
+        window.Cart.init();
+        window.Cart.setupListeners();
+    }
 });
