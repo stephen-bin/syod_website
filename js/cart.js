@@ -99,16 +99,22 @@ const Cart = {
         this.items.forEach(item => {
             const itemEl = document.createElement('div');
             itemEl.className = 'cart-item';
+            
+            // Sanitize user-controllable data
+            const escapedTitle = window.Security ? window.Security.escapeHtml(item.title) : item.title;
+            const sanitizedId = item.id.replace(/['"]/g, '');
+            const sanitizedPrice = parseFloat(item.price) || 0;
+            
             itemEl.innerHTML = `
                 <div class="item-info">
-                    <h4>${item.title}</h4>
-                    <span class="item-price">GH₵ ${item.price}</span>
+                    <h4>${escapedTitle}</h4>
+                    <span class="item-price">GH₵ ${sanitizedPrice.toFixed(2)}</span>
                 </div>
                 <div class="item-controls">
-                    <button class="qty-btn" onclick="Cart.updateQuantity('${item.id}', -1)">-</button>
-                    <span>${item.quantity}</span>
-                    <button class="qty-btn" onclick="Cart.updateQuantity('${item.id}', 1)">+</button>
-                    <i class="fa-solid fa-trash remove-btn" onclick="Cart.remove('${item.id}')"></i>
+                    <button class="qty-btn" onclick="Cart.updateQuantity('${sanitizedId}', -1)">-</button>
+                    <span>${parseInt(item.quantity) || 0}</span>
+                    <button class="qty-btn" onclick="Cart.updateQuantity('${sanitizedId}', 1)">+</button>
+                    <i class="fa-solid fa-trash remove-btn" onclick="Cart.remove('${sanitizedId}')"></i>
                 </div>
             `;
             container.appendChild(itemEl);

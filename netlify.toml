@@ -1,0 +1,15 @@
+[build]
+  publish = "."
+  
+# Redirect all HTTP traffic to HTTPS
+[[redirects]]
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
+
+# Optional: Add 404 redirect to homepage
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

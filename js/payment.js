@@ -20,10 +20,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validations
     function validateForm() {
-        if (!nameInput.value || !emailInput.value || !phoneInput.value || !addressInput.value) {
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const address = addressInput.value.trim();
+
+        if (!name || !email || !phone || !address) {
             alert('Please fill in Name, Email, Phone, and Address.');
             return false;
         }
+
+        if (window.Security) {
+            if (!window.Security.isValidEmail(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+
+            if (!window.Security.isValidPhone(phone)) {
+                alert('Please enter a valid phone number.');
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -43,17 +61,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', () => {
             if (validateForm()) {
-                let message = `Hello Stephen, I want to place an order.%0A%0A*Name*: ${nameInput.value}%0A*Email*: ${emailInput.value}%0A*Phone*: ${phoneInput.value}%0A*Address*: ${addressInput.value}`;
+                // Sanitize inputs
+                const name = window.Security ? window.Security.sanitizeInput(nameInput.value) : nameInput.value;
+                const email = emailInput.value.trim();
+                const phone = window.Security ? window.Security.sanitizeInput(phoneInput.value) : phoneInput.value;
+                const address = window.Security ? window.Security.sanitizeInput(addressInput.value) : addressInput.value;
+                
+                let message = `Hello Stephen, I want to place an order.%0A%0A*Name*: ${encodeURIComponent(name)}%0A*Email*: ${encodeURIComponent(email)}%0A*Phone*: ${encodeURIComponent(phone)}%0A*Address*: ${encodeURIComponent(address)}`;
 
                 if (notesInput && notesInput.value) {
-                    message += `%0A*Notes*: ${notesInput.value}`;
+                    const notes = window.Security ? window.Security.sanitizeInput(notesInput.value) : notesInput.value;
+                    message += `%0A*Notes*: ${encodeURIComponent(notes)}`;
                 }
 
                 message += `%0A%0A*Order Summary*:`;
 
                 if (window.Cart && window.Cart.items.length > 0) {
                     window.Cart.items.forEach(item => {
-                        message += `%0A- ${item.quantity}x ${item.title} (GH₵ ${item.price})`;
+                        const itemTitle = window.Security ? window.Security.sanitizeInput(item.title) : item.title;
+                        message += `%0A- ${item.quantity}x ${encodeURIComponent(itemTitle)} (GH₵ ${parseFloat(item.price).toFixed(2)})`;
                     });
                     message += `%0A%0A*Total*: GH₵ ${window.Cart.getTotal().toFixed(2)}`;
                 } else {

@@ -63,10 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
         eventForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const name = document.getElementById('reg-name').value;
+            const name = Security.sanitizeInput(document.getElementById('reg-name').value);
             const email = document.getElementById('reg-email').value;
-            const phone = document.getElementById('reg-phone').value;
+            const phone = Security.sanitizeInput(document.getElementById('reg-phone').value);
             const title = eventTitleDisplay.textContent;
+
+            // Validate inputs
+            if (!name || !email || !phone) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (!Security.isValidEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (!Security.isValidPhone(phone)) {
+                alert('Please enter a valid phone number.');
+                return;
+            }
 
             const whatsappMsg = `Hello, I want to register for *${title}*.%0A%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}`;
             const whatsappUrl = `https://wa.me/233557894935?text=${whatsappMsg}`;
@@ -83,12 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Display event meeting link if available
             if (meetingLinkContainer) {
                 if (currentEvent && currentEvent.link) {
-                    meetingLinkContainer.innerHTML = `<p>Your request has been sent via WhatsApp!</p><p>Join the event here: <a href="${currentEvent.link}" target="_blank" style="color: #c62828; font-weight: bold;">Click to join ${currentEvent.title}</a></p>`;
+                    const sanitizedLink = Security.sanitizeUrl(currentEvent.link);
+                    const escapedTitle = Security.escapeHtml(currentEvent.title);
+                    
+                    meetingLinkContainer.innerHTML = `<p>Your request has been sent via WhatsApp!</p><p>Join the event here: <a href="${sanitizedLink}" target="_blank" rel="noopener noreferrer" style="color: #c62828; font-weight: bold;">Click to join ${escapedTitle}</a></p>`;
                     if (meetingLink) {
-                        meetingLink.href = currentEvent.link;
+                        meetingLink.href = sanitizedLink;
                     }
                 } else {
-                    meetingLinkContainer.innerHTML = '<p>Your request has been sent via WhatsApp! We will send you the meeting details shortly.</p>';
+                    meetingLinkContainer.textContent = 'Your request has been sent via WhatsApp! We will send you the meeting details shortly.';
                 }
             }
             if (eventSuccessMsg) eventSuccessMsg.style.display = 'block';
