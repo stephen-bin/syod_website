@@ -689,6 +689,18 @@ a {
     color: var(--primary-red);
     cursor: pointer;
     margin-left: 10px;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover,
+.remove-btn:focus {
+    opacity: 0.7;
+    outline: 2px solid var(--primary-red);
+    outline-offset: 2px;
+}
+
+.remove-btn:active {
+    opacity: 0.5;
 }
 
 .cart-summary {

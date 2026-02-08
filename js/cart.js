@@ -111,10 +111,10 @@ const Cart = {
                     <span class="item-price">GH₵ ${sanitizedPrice.toFixed(2)}</span>
                 </div>
                 <div class="item-controls">
-                    <button class="qty-btn" onclick="Cart.updateQuantity('${sanitizedId}', -1)">-</button>
-                    <span>${parseInt(item.quantity) || 0}</span>
-                    <button class="qty-btn" onclick="Cart.updateQuantity('${sanitizedId}', 1)">+</button>
-                    <i class="fa-solid fa-trash remove-btn" onclick="Cart.remove('${sanitizedId}')"></i>
+                    <button class="qty-btn qty-decrease" data-item-id="${sanitizedId}" data-action="decrease">-</button>
+                    <span class="qty-display">${parseInt(item.quantity) || 0}</span>
+                    <button class="qty-btn qty-increase" data-item-id="${sanitizedId}" data-action="increase">+</button>
+                    <i class="fa-solid fa-trash remove-btn" data-item-id="${sanitizedId}" data-action="remove" role="button" tabindex="0"></i>
                 </div>
             `;
             container.appendChild(itemEl);
@@ -127,6 +127,7 @@ const Cart = {
         const modal = document.getElementById('cartModal');
         if (modal) {
             this.renderCartModal();
+            this.attachCartEventDelegation();
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
@@ -185,6 +186,75 @@ const Cart = {
                     document.body.style.overflow = 'hidden';
                 }
             });
+        }
+
+        // Event delegation for cart item controls
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        if (cartItemsContainer) {
+            cartItemsContainer.addEventListener('click', (e) => {
+                const target = e.target;
+                const itemId = target.dataset.itemId;
+                const action = target.dataset.action;
+
+                if (action === 'decrease') {
+                    this.updateQuantity(itemId, -1);
+                    this.renderCartModal();
+                    this.attachCartEventDelegation();
+                } else if (action === 'increase') {
+                    this.updateQuantity(itemId, 1);
+                    this.renderCartModal();
+                    this.attachCartEventDelegation();
+                } else if (action === 'remove') {
+                    this.remove(itemId);
+                    this.renderCartModal();
+                    this.attachCartEventDelegation();
+                }
+            });
+
+            // Keyboard support for remove button
+            cartItemsContainer.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && e.target.dataset.action === 'remove') {
+                    const itemId = e.target.dataset.itemId;
+                    this.remove(itemId);
+                    this.renderCartModal();
+                    this.attachCartEventDelegation();
+                }
+            });
+        }
+    },
+
+    attachCartEventDelegation() {
+        // Re-attach event listeners after cart updates
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        if (cartItemsContainer) {
+            // Clear old listeners by cloning and replacing
+            const newContainer = cartItemsContainer.cloneNode(false);
+            newContainer.innerHTML = cartItemsContainer.innerHTML;
+            cartItemsContainer.parentNode.replaceChild(newContainer, cartItemsContainer);
+
+            // Re-setup listeners with new DOM
+            const newCartContainer = document.getElementById('cart-items-container');
+            if (newCartContainer) {
+                newCartContainer.addEventListener('click', (e) => {
+                    const target = e.target;
+                    const itemId = target.dataset.itemId;
+                    const action = target.dataset.action;
+
+                    if (action === 'decrease') {
+                        this.updateQuantity(itemId, -1);
+                        this.renderCartModal();
+                        this.attachCartEventDelegation();
+                    } else if (action === 'increase') {
+                        this.updateQuantity(itemId, 1);
+                        this.renderCartModal();
+                        this.attachCartEventDelegation();
+                    } else if (action === 'remove') {
+                        this.remove(itemId);
+                        this.renderCartModal();
+                        this.attachCartEventDelegation();
+                    }
+                });
+            }
         }
     }
 };
