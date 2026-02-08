@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    let currentEvent = null;
+
     async function openEventModal(id) {
         try {
             // Static Fetch
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const event = events.find(e => e.id == id);
 
             if (event) {
+                currentEvent = event;
                 eventIdInput.value = event.id;
                 eventTitleDisplay.textContent = `Join us for: ${event.title}`;
                 eventModal.style.display = 'block';
@@ -62,25 +65,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const name = document.getElementById('reg-name').value;
             const email = document.getElementById('reg-email').value;
+            const phone = document.getElementById('reg-phone').value;
             const title = eventTitleDisplay.textContent;
 
-            const whatsappMsg = `Hello, I want to register for *${title}*.%0A%0AName: ${name}%0AEmail: ${email}`;
+            const whatsappMsg = `Hello, I want to register for *${title}*.%0A%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}`;
             const whatsappUrl = `https://wa.me/233557894935?text=${whatsappMsg}`;
 
             // Open WhatsApp
             window.open(whatsappUrl, '_blank');
 
-            // Show Success UI regardless
-            eventForm.querySelector('.form-group').parentElement.childNodes.forEach(node => {
-                if (node.classList && node.classList.contains('form-group')) {
-                    node.style.display = 'none';
-                }
+            // Show Success UI
+            eventForm.querySelectorAll('.form-group').forEach(group => {
+                group.style.display = 'none';
             });
             registerBtn.style.display = 'none';
 
-            // Hardcoded link fallback
+            // Display event meeting link if available
             if (meetingLinkContainer) {
-                meetingLinkContainer.innerHTML = 'Your request has been sent via WhatsApp! We will add you to the group shortly.';
+                if (currentEvent && currentEvent.link) {
+                    meetingLinkContainer.innerHTML = `<p>Your request has been sent via WhatsApp!</p><p>Join the event here: <a href="${currentEvent.link}" target="_blank" style="color: #c62828; font-weight: bold;">Click to join ${currentEvent.title}</a></p>`;
+                    if (meetingLink) {
+                        meetingLink.href = currentEvent.link;
+                    }
+                } else {
+                    meetingLinkContainer.innerHTML = '<p>Your request has been sent via WhatsApp! We will send you the meeting details shortly.</p>';
+                }
             }
             if (eventSuccessMsg) eventSuccessMsg.style.display = 'block';
         });
