@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configuration
     const PAYSTACK_URL = "https://paystack.com/pay/stephen-book-preorder";
-    const WHATSAPP_NUMBER = "233536206077";
+    const WHATSAPP_NUMBER = "233557894935"; // Stephen's WhatsApp number in international format
 
     // Validations
     function validateForm() {
