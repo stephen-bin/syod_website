@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = eventTitleDisplay.textContent;
 
             const whatsappMsg = `Hello, I want to register for *${title}*.%0A%0AName: ${name}%0AEmail: ${email}`;
-            const whatsappUrl = `https://wa.me/233536206077?text=${whatsappMsg}`;
+            const whatsappUrl = `https://wa.me/233557894935?text=${whatsappMsg}`;
 
             // Open WhatsApp
             window.open(whatsappUrl, '_blank');
