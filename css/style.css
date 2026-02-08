@@ -329,12 +329,14 @@ a {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .video-card:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
     border: 1px solid var(--primary-red);
+    box-shadow: 0 8px 25px rgba(224, 25, 25, 0.3);
 }
 
 .play-icon {
