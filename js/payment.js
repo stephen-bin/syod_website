@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const email = emailInput.value.trim();
                 const phone = window.Security ? window.Security.sanitizeInput(phoneInput.value) : phoneInput.value;
                 const address = window.Security ? window.Security.sanitizeInput(addressInput.value) : addressInput.value;
-                
+
                 let message = `Hello Stephen, I want to place an order.%0A%0A*Name*: ${encodeURIComponent(name)}%0A*Email*: ${encodeURIComponent(email)}%0A*Phone*: ${encodeURIComponent(phone)}%0A*Address*: ${encodeURIComponent(address)}`;
 
                 if (notesInput && notesInput.value) {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     message += `%0A%0A*Total*: GH₵ ${window.Cart.getTotal().toFixed(2)}`;
                 } else {
-                    message += `%0A- 1x The Spiritual Youth on a Date (GH₵ 45)%0A%0A*Total*: GH₵ 45.00`;
+                    message += `%0A- 1x The Spiritual Youth on a Date (GH₵ 55)%0A%0A*Total*: GH₵ 55.00`;
                 }
 
                 const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
