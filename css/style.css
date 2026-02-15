@@ -800,6 +800,91 @@ a {
     margin-top: 15px;
 }
 
+/* Product Showcase Section */
+.showcase {
+    background-color: #fff;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-rows: 300px;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Make specific items span larger areas for "masonry-like" feel if possible, 
+   or just keep uniform. For now, uniform is safer for dynamic content unless we calculate spans in JS. 
+   Lets try a slight variation for the first item if screen is large enough */
+
+@media (min-width: 992px) {
+    .showcase-card:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+}
+
+.showcase-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    background: #f0f0f0;
+    /* skeleton data placeholder color */
+}
+
+.showcase-card:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.showcase-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    display: block;
+}
+
+.showcase-card:hover .showcase-img {
+    transform: scale(1.1);
+}
+
+.showcase-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 30px 20px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.showcase-card:hover .showcase-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.showcase-overlay h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments for showcase */
+@media (max-width: 768px) {
+    .showcase-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 250px;
+    }
+}
+
 .campus-tags span {
     background: #eee;
     padding: 5px 12px;
