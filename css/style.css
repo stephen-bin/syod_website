@@ -739,9 +739,104 @@ a {
 }
 
 /* Add to Cart Button override */
+/* Add to Cart Button override */
 .add-to-cart-btn {
     /* Inherits btn-primary but we can add specific icon spacing if needed */
+    position: relative;
 }
+
+/* Distribution & Contact Section */
+.distribution-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 3rem;
+}
+
+.dist-column h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-black);
+    border-bottom: 2px solid var(--primary-red);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.dist-list,
+.contact-list {
+    list-style: none;
+}
+
+.dist-list li,
+.contact-list li {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+.dist-list li a,
+.contact-list li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-black);
+    font-weight: 500;
+}
+
+.dist-list li a:hover,
+.contact-list li a:hover {
+    color: var(--primary-red);
+}
+
+.dist-list i,
+.contact-list i {
+    width: 25px;
+    color: var(--primary-red);
+}
+
+.campus-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.campus-tags span {
+    background: #eee;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-grey);
+    transition: all 0.3s ease;
+}
+
+.campus-tags span:hover {
+    background: var(--primary-red);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+    .distribution-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+    }
+
+    .dist-column h3 {
+        display: inline-block;
+    }
+
+    .dist-list li a,
+    .contact-list li a {
+        justify-content: center;
+    }
+
+    .campus-tags {
+        justify-content: center;
+    }
+}
+
 /* WhatsApp Float */
 .whatsapp-float {
     position: fixed;
