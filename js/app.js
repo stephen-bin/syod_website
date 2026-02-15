@@ -50,4 +50,35 @@ document.addEventListener('DOMContentLoaded', () => {
         window.Cart.init();
         window.Cart.setupListeners();
     }
+    // Campus Distributor Interaction
+    const campusTags = document.querySelectorAll('.campus-tag');
+    const distributorInfoBox = document.getElementById('distributor-info');
+
+    if (campusTags.length > 0 && distributorInfoBox) {
+        campusTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Remove active class from all
+                campusTags.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked
+                tag.classList.add('active');
+
+                const name = tag.getAttribute('data-name');
+                const phone = tag.getAttribute('data-phone');
+                const phoneLink = phone.replace(/\s/g, '');
+
+                // Update info box with fade effect
+                distributorInfoBox.style.opacity = '0';
+                setTimeout(() => {
+                    distributorInfoBox.innerHTML = `
+                        <div>
+                            <h4>${tag.textContent} Representative</h4>
+                            <p class="mb-1">${name}</p>
+                            <a href="tel:${phoneLink}"><i class="fa-solid fa-phone"></i> ${phone}</a>
+                        </div>
+                    `;
+                    distributorInfoBox.style.opacity = '1';
+                }, 200);
+            });
+        });
+    }
 });

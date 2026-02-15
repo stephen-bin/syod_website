@@ -885,20 +885,70 @@ a {
     }
 }
 
-.campus-tags span {
-    background: #eee;
-    padding: 5px 12px;
+/* Interactive Campus Tags */
+.campus-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.campus-tag {
+    background: #f1f1f1;
+    padding: 6px 14px;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-grey);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.campus-tag:hover {
+    background: #e9e9e9;
+    color: var(--text-black);
+    transform: translateY(-2px);
+}
+
+.campus-tag.active {
+    background: var(--primary-red);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(224, 25, 25, 0.3);
+}
+
+.distributor-info-box {
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     transition: all 0.3s ease;
 }
 
-.campus-tags span:hover {
-    background: var(--primary-red);
-    color: #fff;
-    transform: translateY(-2px);
+.distributor-info-box h4 {
+    margin-bottom: 5px;
+    color: var(--primary-red);
+    font-size: 1.1rem;
+}
+
+.distributor-info-box a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-black);
+}
+
+.distributor-info-box a:hover {
+    color: var(--primary-red);
+    text-decoration: underline;
+}
+
+.text-sm {
+    font-size: 0.85rem;
 }
 
 @media (max-width: 992px) {

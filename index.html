@@ -240,10 +240,19 @@
                 <!-- Campus Distributors -->
                 <div class="dist-column">
                     <h3>Campus Distributors</h3>
-                    <p>Available on major tertiary institutions:</p>
-                    <div class="campus-tags">
-                        <span>UG</span> <span>UHAS</span> <span>HTU</span> <span>UCC</span>
-                        <span>UoE</span> <span>KNUST</span> <span>ATU</span> <span>UENR</span>
+                    <p class="mb-3">Select your campus to view contact:</p>
+                    <div class="campus-tags" id="campus-tags-container">
+                        <span class="campus-tag" data-name="Dominic" data-phone="+233 59 857 0444">UCC</span>
+                        <span class="campus-tag" data-name="Gideon" data-phone="+233 25 775 2270">UENR</span>
+                        <span class="campus-tag" data-name="Francis" data-phone="+233 25 707 2558">KNUST</span>
+                        <span class="campus-tag" data-name="Joshua" data-phone="+233 53 704 1221">ATU</span>
+                        <span class="campus-tag" data-name="Solomon" data-phone="+233 59 785 1670">Legon (UG)</span>
+                        <span class="campus-tag" data-name="Esther" data-phone="+233 55 789 4935">HTU/UHAS</span>
+                        <span class="campus-tag" data-name="Joshua" data-phone="+233 53 704 1221">UEW</span>
+                        <span class="campus-tag" data-name="Esther" data-phone="+233 55 789 4935">SHS Coord</span>
+                    </div>
+                    <div id="distributor-info" class="distributor-info-box">
+                        <p class="text-sm text-grey">Click a campus above.</p>
                     </div>
                 </div>
 
@@ -265,16 +274,18 @@
     </section>
 
     <!-- Footer / Final CTA -->
-    <footer id="order" class="footer section-padding">
+    <footer id="order" class="footer section-padding bg-black">
         <div class="container text-center">
-            <h2 class="hero-title text-white mb-4">YOUR FUTURE MARRIAGE<br>STARTS NOW.</h2>
+            <h2 class="hero-title text-white mb-4">YOUR FUTURE MARRIAGE NEEDS <br>STARTS WITH THIS READ.</h2>
             <div class="cta-group">
                 <button class="btn-primary btn-lg add-to-cart-btn" data-id="book-main"
                     data-title="The Spiritual Youth on a Date" data-price="55">ADD TO CART (GH₵ 55)</button>
                 <a href="https://amzn.eu/d/0axgFq2l" class="btn-outline btn-lg" target="_blank"><i
                         class="fa-brands fa-amazon"></i> Order on
                     Amazon (Intl)</a>
-                <button class="btn-outline btn-lg">BULK ORDER (CHURCHES)</button>
+                <a href="https://wa.me/233557894935?text=Hello!%20I%20am%20interested%20in%20making%20a%20bulk%20order%20for%20'The%20Spiritual%20Youth%20on%20a%20Date'%20for%20my%20church/group.%20Please%20assist%20me."
+                    class="btn-outline btn-lg" target="_blank"><i class="fa-brands fa-whatsapp"></i> BULK ORDER
+                    (CHURCHES)</a>
             </div>
             <p class="copyright mt-5">&copy; 2026 Stephen Npoandan Binaansim. All Rights Reserved.</p>
         </div>
@@ -341,7 +352,8 @@
     </div>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/233557894935" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/233557894935?text=Hello!%20I%20am%20interested%20in%20getting%20a%20copy%20of%20'The%20Spiritual%20Youth%20on%20a%20Date'.%20Please%20assist%20me."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
