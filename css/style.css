@@ -147,6 +147,26 @@ a {
     color: var(--text-black);
 }
 
+.btn-outline-dark {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid var(--text-black);
+    color: var(--text-black);
+    padding: 13px 33px;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.btn-outline-dark:hover {
+    background: var(--text-black);
+    color: #fff;
+}
+
 /* Sections */
 .section-padding {
     padding: 80px 0;
